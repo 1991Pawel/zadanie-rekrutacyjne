@@ -8,25 +8,32 @@ const List = () => {
     <div className={styles.listWrapper}>
       <h2 className={styles.listTitle}>People</h2>
       <ul className={styles.list}>
-        <li className={styles.listItem}>Age 40+</li>
-        <li className={styles.listItemExtended}>
-          <span className={styles.listItemExtendedHead}>
-            Ethnicity
-            <button className={styles.subListItemBtn}>&#x02013;</button>
-          </span>
-          <ul className={styles.subList}>
-            <li className={styles.subListItem}>
-              Black
-              <button className={styles.subListItemBtn}>&#x02013;</button>
+        {listItems.map((listItem) => {
+          if (listItem.sublist === null) {
+            return (
+              <li key={listItem.id} className={styles.listItem}>
+                {listItem.name}
+              </li>
+            );
+          }
+          return (
+            <li key={listItem.id} className={styles.listItemExtended}>
+              <span className={styles.listItemExtendedHead}>
+                {listItem.name}
+                <button className={styles.subListItemBtn}>&#x02013;</button>
+              </span>
+              <ul className={styles.subList}>
+                {listItem.sublist.map((subListItem, index) => (
+                  <li key={index} className={styles.subListItem}>
+                    {subListItem}
+                    <button className={styles.subListItemBtn}>&#x02013;</button>
+                  </li>
+                ))}
+                <button className={styles.subListBtn}>&#x0002B;</button>
+              </ul>
             </li>
-            <li className={styles.subListItem}>
-              Hispanic
-              <button className={styles.subListItemBtn}>&#x02013;</button>
-            </li>
-            <button className={styles.subListBtn}>&#x0002B;</button>
-          </ul>
-        </li>
-        <li className={styles.listItem}>Incomeyearly 45k USD+</li>
+          );
+        })}
         <button className={styles.listBtn}>&#x0002B;</button>
       </ul>
     </div>
