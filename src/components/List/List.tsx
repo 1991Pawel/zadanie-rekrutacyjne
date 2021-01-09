@@ -8,15 +8,12 @@ const List = () => {
     <div className={styles.listWrapper}>
       <h2 className={styles.listTitle}>People</h2>
       <ul className={styles.list}>
-        {listItems.map((listItem) => {
-          if (listItem.sublist === null) {
-            return (
-              <li key={listItem.id} className={styles.listItem}>
-                {listItem.name}
-              </li>
-            );
-          }
-          return (
+        {listItems.map((listItem) =>
+          listItem.sublist === null ? (
+            <li key={listItem.id} className={styles.listItem}>
+              {listItem.name}
+            </li>
+          ) : (
             <li key={listItem.id} className={styles.listItemExtended}>
               <span className={styles.listItemExtendedHead}>
                 {listItem.name}
@@ -32,8 +29,8 @@ const List = () => {
                 <button className={styles.subListBtn}>&#x0002B;</button>
               </ul>
             </li>
-          );
-        })}
+          )
+        )}
         <button className={styles.listBtn}>&#x0002B;</button>
       </ul>
     </div>
