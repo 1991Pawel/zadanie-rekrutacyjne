@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useContext } from 'react';
+import { ListItem } from 'types/types';
 
 const initialState = [
   {
@@ -18,12 +19,6 @@ const initialState = [
     sublist: null
   }
 ];
-
-export interface ListItem {
-  name: string;
-  sublist: null | string[];
-  id: number;
-}
 
 type ListConxtextProps = {
   listItems: ListItem[];
