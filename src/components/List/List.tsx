@@ -6,6 +6,7 @@ import SubListItem from 'components/SubListItem/SubListItem';
 
 const List: React.FC = () => {
   const { listItems } = useListContext();
+
   return (
     <div className={styles.listWrapper}>
       <h2 className={styles.listTitle}>People</h2>
@@ -17,10 +18,10 @@ const List: React.FC = () => {
             <SubListItem key={id} id={id} name={name} sublist={sublist} />
           )
         )}
-        <button onClick={() => console.log('click')} className={styles.listBtn}>
-          &#x0002B;
-        </button>
       </ul>
+      <button onClick={() => console.log('click')} className={styles.listBtn}>
+        &#x0002B;
+      </button>
     </div>
   );
 };
