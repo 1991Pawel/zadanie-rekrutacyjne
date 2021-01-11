@@ -6,12 +6,12 @@ import styles from 'components/Modal/Modal.module.scss';
 type ModalProps = {
   children: React.ReactNode;
   isModalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  closeModal: (state: boolean) => void;
 };
 const Modal: FunctionComponent<ModalProps> = ({
   children,
   isModalOpen,
-  setModalOpen
+  closeModal
 }) => {
   const portalDiv = document.getElementById('modal-root');
   if (!portalDiv) {
@@ -24,7 +24,7 @@ const Modal: FunctionComponent<ModalProps> = ({
   return ReactDOM.createPortal(
     <div className={styles.modalWrapper}>
       <div className={styles.modal}>
-        <button onClick={() => setModalOpen(false)} className={styles.modalBtn}>
+        <button onClick={() => closeModal(false)} className={styles.modalBtn}>
           &#x02013;
         </button>
         {children}

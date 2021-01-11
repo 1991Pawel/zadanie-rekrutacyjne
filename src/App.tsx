@@ -5,11 +5,11 @@ import Modal from 'components/Modal/Modal';
 import AddForm from 'components/AddForm/AddForm';
 
 const App: React.FC = () => {
-  const [isModalOpen, setModalOpens] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   return (
     <div>
-      <List />
-      <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpens}>
+      <List setModalOpen={setModalOpen} />
+      <Modal isModalOpen={isModalOpen} closeModal={setModalOpen}>
         <AddForm />
       </Modal>
     </div>

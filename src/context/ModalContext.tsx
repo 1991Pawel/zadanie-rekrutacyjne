@@ -3,7 +3,8 @@ import React, { useState, useContext, createContext } from 'react';
 
 type ModalConxtextProps = {
   isModalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
+  openModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ModalContext = createContext<ModalConxtextProps | undefined>(
@@ -13,8 +14,11 @@ export const ModalContext = createContext<ModalConxtextProps | undefined>(
 const ModalProvider: React.FC = ({ children }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const closeModal = () => setModalOpen(false);
+  const openModal = () => setModalOpen(true);
+
   return (
-    <ModalContext.Provider value={{ isModalOpen, setModalOpen }}>
+    <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
       {children}
     </ModalContext.Provider>
   );

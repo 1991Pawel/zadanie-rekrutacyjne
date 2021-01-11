@@ -1,22 +1,26 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useContext } from 'react';
 import { ListItem } from 'types/types';
+const { v4: uuidv4 } = require('uuid');
 
 const initialState = [
   {
     id: 1,
     name: 'Age 40+',
-    sublist: null
+    sublist: null,
+    extended: false
   },
   {
     id: 2,
     name: 'Ethnicity',
-    sublist: ['Black', 'Hispanic']
+    sublist: ['Black', 'Hispanic'],
+    extended: true
   },
   {
     id: 3,
     name: 'Incomeyearly 45k USD+',
-    sublist: null
+    sublist: null,
+    extended: false
   }
 ];
 
@@ -33,8 +37,13 @@ export const ListContext = createContext<ListConxtextProps | undefined>(
 const ListProvider: React.FC = ({ children }) => {
   const [listItems, setListItems] = useState<ListItem[]>(initialState);
 
-  const addItemToList = () => {
+  const addItemToList = (listItem: ListItem) => {
+    const newListItem = {
+      ...listItem,
+      id: uuidv4()
+    };
     console.log('add list to item');
+    setListItems((prevState) => [...prevState, newListItem]);
   };
   const removeItemFromList = () => {
     console.log('add list to item');
