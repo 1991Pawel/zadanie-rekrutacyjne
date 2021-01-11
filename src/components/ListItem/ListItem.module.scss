@@ -33,88 +33,12 @@
     font-weight: normal;
   }
 }
-
-.subListItem {
-  position: relative;
-  list-style: none;
-  margin: 1rem 0;
-  margin-left: 5rem;
-  border-radius: 4px;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    height: 1px;
-    width: 2.5rem;
-    transform: translate(calc(-100% - 5px), -50%);
-    background: #c9cdd7;
-  }
-
-  &::after {
-    content: 'Or';
-    font-weight: normal;
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translate(-5.5rem, -50%);
-    color: #c9cdd7;
-  }
-}
-
-.listItemExtended {
-  @include list-item;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 4rem;
-    bottom: 0;
-    height: 80%;
-    width: 1px;
-    background: #c9cdd7;
-    transform: translatey(-50%);
-    z-index: -1;
-  }
-}
-.listItemExtendedHead {
-  position: relative;
-  display: inline-block;
-  border: 1px solid #ccc;
-  padding: 0.6rem;
-  margin-bottom: 1.5rem;
-  border-radius: 4px;
-  width: 80%;
-  background: #fff;
-}
-
-.subListBtn {
-  display: flex;
-  align-items: center;
-  font-size: 2rem;
-  cursor: pointer;
-  display: block;
-  margin-left: 1rem;
-  height: 3rem;
-  width: 3rem;
-  border-radius: 50%;
-  border: none;
-  background-image: linear-gradient(#89f39f, #28e8e7);
-  color: #fff;
-  box-shadow: 0 2px 10px #28e8e7;
-}
-
-.subListItemBtn {
+.listBtn {
   position: absolute;
+  top: 0;
+  right: 0;
   display: block;
   right: 0.5rem;
-  top: 50%;
   transform: translatey(-50%);
   font-size: 1.6rem;
   height: 2.3rem;
@@ -125,8 +49,4 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 10px #d86988;
-}
-
-.listItemExtendedHead .subListItemBtn {
-  right: -4.4rem;
 }

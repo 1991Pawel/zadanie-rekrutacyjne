@@ -40,18 +40,17 @@ const ListProvider: React.FC = ({ children }) => {
 
   const addItemToSublist = (subItem: ListItem) => {
     const newList = listItems.map((list) => {
-      if (list.id === subItem.id && list.sublist) {
+      if (list.id === subItem.id) {
         const updatedItem = {
           ...list,
-          sublist: [...list.sublist, subItem.name]
+          sublist: list.sublist
+            ? [...list.sublist, subItem.name]
+            : [subItem.name]
         };
-
         return updatedItem;
       }
-
       return list;
     });
-
     setListItems(newList);
   };
 
@@ -64,8 +63,9 @@ const ListProvider: React.FC = ({ children }) => {
     console.log('add list to item');
     setListItems((prevState) => [...prevState, newListItem]);
   };
-  const removeItemFromList = () => {
+  const removeItemFromList = (id: any) => {
     console.log('remove item from list');
+    console.log(id);
   };
 
   return (

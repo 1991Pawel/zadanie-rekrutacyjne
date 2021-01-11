@@ -2,6 +2,7 @@ import React from 'react';
 import styles from 'components/AddFormItem/AddFormItem.module.scss';
 import { useForm } from 'hooks/useForm';
 import FormInput from 'components/FormInput/FormInput';
+import { useListContext } from 'context/ListContext';
 
 const initialState = {
   name: '',
@@ -10,11 +11,12 @@ const initialState = {
 
 const AddFormItem = () => {
   const { values, handleChange } = useForm(initialState);
-
+  const { addItemToList } = useListContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(values);
     console.log('handleSubmit');
+    addItemToList(values);
   };
 
   return (
