@@ -1,17 +1,26 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styles from 'components/List/List.module.scss';
 import { useListContext } from 'context/ListContext';
 import ListItem from 'components/ListItem/ListItem';
 import SubListItem from 'components/SubListItem/SubListItem';
+import Modal from 'components/Modal/Modal';
+import AddFormItem from 'components/AddFormItem/AddFormItem';
+import AddFormSubitem from 'components/AddFormSubitem/AddFormSubitem';
 
-const List = ({ setModalOpen }: any) => {
-  const { listItems, addItemToList } = useListContext();
+const List = () => {
+  const { listItems } = useListContext();
+  const [openModal, setOpenModal] = useState(false);
+  const [extendedFormId, setExtendedFormId] = useState<null | string>(null);
 
   const handleAddSubItem = (id: any) => {
-    const item = listItems.filter((item) => item.id === id);
-    setModalOpen(true);
-    console.log(item[0].extended);
+    setOpenModal(true);
+    setExtendedFormId(id);
+  };
+
+  const handleAddItem = () => {
+    setExtendedFormId(null);
+    setOpenModal(true);
   };
 
   return (
@@ -31,10 +40,17 @@ const List = ({ setModalOpen }: any) => {
             />
           )
         )}
-        <button onClick={() => setModalOpen(true)} className={styles.listBtn}>
+        <button onClick={handleAddItem} className={styles.listBtn}>
           &#x0002B;
         </button>
       </ul>
+      <Modal isModalOpen={openModal} closeModal={setOpenModal}>
+        {extendedFormId ? (
+          <AddFormSubitem extendedFormId={extendedFormId} />
+        ) : (
+          <AddFormItem />
+        )}
+      </Modal>
     </div>
   );
 };

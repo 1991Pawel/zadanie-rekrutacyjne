@@ -28,6 +28,7 @@ type ListConxtextProps = {
   listItems: ListItem[];
   addItemToList: (listItem: ListItem) => void;
   removeItemFromList: (id: number) => void;
+  addItemToSublist: (value: any) => void;
 };
 
 export const ListContext = createContext<ListConxtextProps | undefined>(
@@ -37,7 +38,25 @@ export const ListContext = createContext<ListConxtextProps | undefined>(
 const ListProvider: React.FC = ({ children }) => {
   const [listItems, setListItems] = useState<ListItem[]>(initialState);
 
+  const addItemToSublist = (subItem: ListItem) => {
+    const newList = listItems.map((list) => {
+      if (list.id === subItem.id && list.sublist) {
+        const updatedItem = {
+          ...list,
+          sublist: [...list.sublist, subItem.name]
+        };
+
+        return updatedItem;
+      }
+
+      return list;
+    });
+
+    setListItems(newList);
+  };
+
   const addItemToList = (listItem: ListItem) => {
+    console.log(listItem);
     const newListItem = {
       ...listItem,
       id: uuidv4()
@@ -46,7 +65,7 @@ const ListProvider: React.FC = ({ children }) => {
     setListItems((prevState) => [...prevState, newListItem]);
   };
   const removeItemFromList = () => {
-    console.log('add list to item');
+    console.log('remove item from list');
   };
 
   return (
@@ -54,7 +73,8 @@ const ListProvider: React.FC = ({ children }) => {
       value={{
         listItems,
         addItemToList,
-        removeItemFromList
+        removeItemFromList,
+        addItemToSublist
       }}
     >
       {children}

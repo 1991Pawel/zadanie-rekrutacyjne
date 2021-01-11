@@ -1,6 +1,6 @@
 export type ListItem = {
   name: string;
-  sublist?: null | string[] | undefined;
+  sublist?: null | string[];
   id: number;
   extended?: boolean;
 };
