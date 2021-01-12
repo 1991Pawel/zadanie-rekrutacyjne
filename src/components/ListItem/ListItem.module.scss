@@ -31,6 +31,10 @@
     width: 5rem;
     transform: translate(calc(-100% - 5px), -50%);
     background: #c9cdd7;
+
+    @media only screen and (max-width: 600px) {
+      width: 2.5rem;
+    }
   }
   &::after {
     content: 'And';
@@ -40,6 +44,10 @@
     transform: translate(-12rem, -50%);
     color: #c9cdd7;
     font-weight: normal;
+
+    @media only screen and (max-width: 600px) {
+      transform: translate(-9rem, -50%);
+    }
   }
 }
 .listBtn {
