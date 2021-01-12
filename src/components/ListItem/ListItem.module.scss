@@ -7,10 +7,19 @@
   list-style: none;
   box-shadow: 0 2px 15px #d3d0f5;
   border-left: 5px solid #7175f6;
+
+  span {
+    word-break: break-all;
+    width: 85%;
+  }
 }
 
 .listItem {
   @include list-item;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &::before {
     content: '';
@@ -34,12 +43,9 @@
   }
 }
 .listBtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  right: 0.5rem;
-  transform: translatey(-50%);
+  margin-right: 0.4rem;
+  display: inline-block;
+  margin-left: auto;
   font-size: 1.6rem;
   height: 2.3rem;
   width: 2.3rem;

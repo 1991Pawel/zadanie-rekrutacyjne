@@ -24,7 +24,7 @@ const SubListItem: React.FC<SubListItem> = ({
       <ul className={styles.subList}>
         {sublist?.map((subListItem, index) => (
           <li key={index} className={styles.subListItem}>
-            {subListItem}
+            <span>{subListItem}</span>
             <button className={styles.subListItemBtn}>&#x02013;</button>
           </li>
         ))}

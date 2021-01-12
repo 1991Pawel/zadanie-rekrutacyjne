@@ -4,7 +4,7 @@ import { ListItem as ListItemTypes } from 'types/types';
 
 const ListItem: React.FC<ListItemTypes> = ({ name }: ListItemTypes) => (
   <li className={styles.listItem}>
-    {name}
+    <span>{name}</span>
     <button className={styles.listBtn}>&#x02013;</button>
   </li>
 );
