@@ -37,16 +37,7 @@
   }
 }
 .listBtn {
+  @include remove-btn;
   margin-right: 0.4rem;
   display: inline-block;
-  margin-left: auto;
-  font-size: 1.6rem;
-  height: 2.3rem;
-  width: 2.3rem;
-  background-image: linear-gradient(#f86f95, #f24c67);
-  border: none;
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 10px #d86988;
 }
