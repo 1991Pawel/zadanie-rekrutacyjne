@@ -4,9 +4,9 @@ import List from 'components/List/List';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <main>
       <List />
-    </div>
+    </main>
   );
 };
 
