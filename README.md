@@ -20,7 +20,7 @@ npm install
 npm 
 
 ```sh
-npm run dev
+npm run start
 ```
 
 ## live
