@@ -14,8 +14,6 @@ const AddFormItem = () => {
   const { addItemToList } = useListContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(values);
-    console.log('handleSubmit');
     addItemToList(values);
   };
 

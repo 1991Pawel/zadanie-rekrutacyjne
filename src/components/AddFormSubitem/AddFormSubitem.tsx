@@ -6,8 +6,11 @@ import { useListContext } from 'context/ListContext';
 const initialState = {
   name: ''
 };
+type AddFormSubmitProps = {
+  extendedFormId: number;
+};
 
-const AddFormSubitem = ({ extendedFormId }: any) => {
+const AddFormSubitem = ({ extendedFormId }: AddFormSubmitProps) => {
   const { values, handleChange } = useForm(initialState);
   const { addItemToSublist } = useListContext();
 

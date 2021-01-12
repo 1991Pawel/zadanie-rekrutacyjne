@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-export const useForm = (initialState: any) => {
+export const useForm = (initialState) => {
   const [values, setValues] = useState(initialState);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     if (e.target.type === 'checkbox') {
       setValues({
         ...values,
