@@ -1,18 +1,4 @@
-@mixin list-item {
-  position: relative;
-  margin: 1rem 0;
-  padding: 1.5rem;
-  min-width: 20rem;
-  border-radius: 4px;
-  list-style: none;
-  box-shadow: 0 2px 15px #d3d0f5;
-  border-left: 5px solid #7175f6;
-
-  span {
-    word-break: break-all;
-    width: 85%;
-  }
-}
+@import 'styles/global.scss';
 
 .listItem {
   @include list-item;
