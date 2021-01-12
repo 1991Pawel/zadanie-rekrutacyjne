@@ -8,9 +8,13 @@ const initialState = {
 };
 type AddFormSubmitProps = {
   extendedFormId: number;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const AddFormSubitem = ({ extendedFormId }: AddFormSubmitProps) => {
+const AddFormSubitem = ({
+  extendedFormId,
+  setOpenModal
+}: AddFormSubmitProps) => {
   const { values, handleChange } = useForm(initialState);
   const { addItemToSublist } = useListContext();
 
@@ -20,6 +24,7 @@ const AddFormSubitem = ({ extendedFormId }: AddFormSubmitProps) => {
       ...values,
       id: extendedFormId
     });
+    setOpenModal(false);
   };
 
   return (

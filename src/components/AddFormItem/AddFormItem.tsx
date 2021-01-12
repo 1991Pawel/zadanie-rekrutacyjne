@@ -8,13 +8,17 @@ const initialState = {
   name: '',
   extended: false
 };
+type AddFormItemProps = {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const AddFormItem = () => {
+const AddFormItem = ({ setOpenModal }: AddFormItemProps) => {
   const { values, handleChange } = useForm(initialState);
   const { addItemToList } = useListContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addItemToList(values);
+    setOpenModal(false);
   };
 
   return (

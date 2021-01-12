@@ -54,9 +54,12 @@ const List = () => {
       </ul>
       <Modal isModalOpen={openModal} closeModal={setOpenModal}>
         {extendedFormId ? (
-          <AddFormSubitem extendedFormId={extendedFormId} />
+          <AddFormSubitem
+            setOpenModal={setOpenModal}
+            extendedFormId={extendedFormId}
+          />
         ) : (
-          <AddFormItem />
+          <AddFormItem setOpenModal={setOpenModal} />
         )}
       </Modal>
     </div>
