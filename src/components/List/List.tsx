@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styles from 'components/List/List.module.scss';
 import { useListContext } from 'context/ListContext';

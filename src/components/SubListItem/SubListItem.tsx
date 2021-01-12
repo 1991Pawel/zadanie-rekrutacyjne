@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styles from 'components/SubListItem/SubListItem.module.scss';
 import { ListItem as ListItemTypes } from 'types/types';

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useState, useContext } from 'react';
 const { v4: uuidv4 } = require('uuid');
 import { data as initialState } from 'data/data';
