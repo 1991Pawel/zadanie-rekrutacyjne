@@ -1,11 +1,25 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styles from 'components/ListItem/ListItem.module.scss';
-import { ListItem as ListItemTypes } from 'types/types';
+import { ListItem as ListItemType } from 'types/types';
 
-const ListItem: React.FC<ListItemTypes> = ({ name }: ListItemTypes) => (
+type ListItemProps = {
+  removeItemFormList: (id: number) => void;
+  listItem: ListItemType;
+};
+
+const ListItem: React.FC<ListItemProps> = ({
+  listItem,
+  removeItemFormList
+}) => (
   <li className={styles.listItem}>
-    <span>{name}</span>
-    <button className={styles.listBtn}>&#x02013;</button>
+    <span>{listItem.name}</span>
+    <button
+      onClick={() => removeItemFormList(listItem.id)}
+      className={styles.listBtn}
+    >
+      &#x02013;
+    </button>
   </li>
 );
 

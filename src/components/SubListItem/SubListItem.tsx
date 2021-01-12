@@ -1,31 +1,42 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styles from 'components/SubListItem/SubListItem.module.scss';
+import { ListItem as ListItemTypes } from 'types/types';
 
-export type SubListItem = {
-  name: string;
-  sublist: null | string[] | undefined;
-  handleAddSubItem: (id: number | string) => void;
-  id: any;
+type SubListItem = {
+  listItem: ListItemTypes;
+  handleAddSubItem: (id: number) => void;
+  removeItemFromSublist: (id: number) => void;
+  removeItemFormList: (id: number) => void;
 };
-
 const SubListItem: React.FC<SubListItem> = ({
-  name,
-  sublist,
+  listItem,
   handleAddSubItem,
-  id
+  removeItemFromSublist,
+  removeItemFormList
 }) => {
+  const { sublist, name, id } = listItem;
   return (
     <li className={styles.listItemExtended}>
       <span className={styles.listItemExtendedHead}>
         {name}
-        <button className={styles.subListItemBtn}>&#x02013;</button>
+        <button
+          onClick={() => removeItemFormList(id)}
+          className={styles.subListItemBtn}
+        >
+          &#x02013;
+        </button>
       </span>
       <ul className={styles.subList}>
-        {sublist?.map((subListItem, index) => (
-          <li key={index} className={styles.subListItem}>
-            <span>{subListItem}</span>
-            <button className={styles.subListItemBtn}>&#x02013;</button>
+        {sublist?.map(({ name, id }) => (
+          <li key={id} className={styles.subListItem}>
+            <span>{name}</span>
+            <button
+              onClick={() => removeItemFromSublist(id)}
+              className={styles.subListItemBtn}
+            >
+              &#x02013;
+            </button>
           </li>
         ))}
       </ul>

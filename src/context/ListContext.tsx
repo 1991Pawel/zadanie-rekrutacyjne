@@ -1,34 +1,26 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState, useContext } from 'react';
-import { ListItem } from 'types/types';
 const { v4: uuidv4 } = require('uuid');
+import { data as initialState } from 'data/data';
 
-const initialState = [
-  {
-    id: 1,
-    name: 'Age 40+',
-    sublist: null,
-    extended: false
-  },
-  {
-    id: 2,
-    name: 'Ethnicity',
-    sublist: ['Black', 'Hispanic'],
-    extended: true
-  },
-  {
-    id: 3,
-    name: 'Incomeyearly 45k USD+',
-    sublist: null,
-    extended: false
-  }
-];
+export type SubListItem = {
+  id: number;
+  name: string;
+};
+
+export type ListItem = {
+  name: string;
+  sublist: null | Array<SubListItem>;
+  id: number;
+  extended?: boolean;
+};
 
 type ListConxtextProps = {
   listItems: ListItem[];
   addItemToList: (listItem: ListItem) => void;
   removeItemFromList: (id: number) => void;
-  addItemToSublist: (value: any) => void;
+  addItemToSublist: (item: SubListItem) => void;
+  removeItemFromSublist: (id: number) => void;
 };
 
 export const ListContext = createContext<ListConxtextProps | undefined>(
@@ -38,14 +30,43 @@ export const ListContext = createContext<ListConxtextProps | undefined>(
 const ListProvider: React.FC = ({ children }) => {
   const [listItems, setListItems] = useState<ListItem[]>(initialState);
 
-  const addItemToSublist = (subItem: ListItem) => {
+  const addItemToList = (listItem: ListItem) => {
+    const newListItem = {
+      ...listItem,
+      id: uuidv4()
+    };
+    setListItems((prevState) => [...prevState, newListItem]);
+  };
+
+  const removeItemFromList = (id: number) => {
+    setListItems(listItems.filter((item) => item.id !== id));
+  };
+
+  const removeItemFromSublist = (id: number) => {
+    const newList = listItems.map((item) => {
+      if (item.sublist !== null) {
+        console.log(item);
+        const newSublist = item.sublist.filter((sublist) => sublist.id !== id);
+        return {
+          ...item,
+          sublist: newSublist
+        };
+      }
+      return item;
+    });
+    setListItems(newList);
+  };
+
+  const addItemToSublist = (subItem: SubListItem) => {
+    const newItem = {
+      name: subItem.name,
+      id: uuidv4()
+    };
     const newList = listItems.map((list) => {
       if (list.id === subItem.id) {
         const updatedItem = {
           ...list,
-          sublist: list.sublist
-            ? [...list.sublist, subItem.name]
-            : [subItem.name]
+          sublist: list.sublist ? [...list.sublist, newItem] : [newItem]
         };
         return updatedItem;
       }
@@ -54,27 +75,14 @@ const ListProvider: React.FC = ({ children }) => {
     setListItems(newList);
   };
 
-  const addItemToList = (listItem: ListItem) => {
-    console.log(listItem);
-    const newListItem = {
-      ...listItem,
-      id: uuidv4()
-    };
-    console.log('add list to item');
-    setListItems((prevState) => [...prevState, newListItem]);
-  };
-  const removeItemFromList = (id: any) => {
-    console.log('remove item from list');
-    console.log(id);
-  };
-
   return (
     <ListContext.Provider
       value={{
         listItems,
         addItemToList,
         removeItemFromList,
-        addItemToSublist
+        addItemToSublist,
+        removeItemFromSublist
       }}
     >
       {children}

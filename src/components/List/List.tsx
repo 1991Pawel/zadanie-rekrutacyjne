@@ -9,11 +9,15 @@ import AddFormItem from 'components/AddFormItem/AddFormItem';
 import AddFormSubitem from 'components/AddFormSubitem/AddFormSubitem';
 
 const List = () => {
-  const { listItems } = useListContext();
+  const {
+    listItems,
+    removeItemFromList,
+    removeItemFromSublist
+  } = useListContext();
   const [openModal, setOpenModal] = useState(false);
-  const [extendedFormId, setExtendedFormId] = useState<null | string>(null);
+  const [extendedFormId, setExtendedFormId] = useState<number | null>(null);
 
-  const handleAddSubItem = (id: any) => {
+  const handleAddSubItem = (id: number) => {
     setOpenModal(true);
     setExtendedFormId(id);
   };
@@ -27,16 +31,20 @@ const List = () => {
     <div className={styles.listWrapper}>
       <h2 className={styles.listTitle}>People</h2>
       <ul className={styles.list}>
-        {listItems.map(({ id, name, sublist, extended }) =>
-          !extended ? (
-            <ListItem key={id} id={id} name={name} />
+        {listItems.map((listItem) =>
+          !listItem.extended ? (
+            <ListItem
+              key={listItem.id}
+              listItem={listItem}
+              removeItemFormList={removeItemFromList}
+            />
           ) : (
             <SubListItem
+              key={listItem.id}
+              listItem={listItem}
               handleAddSubItem={handleAddSubItem}
-              key={id}
-              id={id}
-              name={name}
-              sublist={sublist}
+              removeItemFromSublist={removeItemFromSublist}
+              removeItemFormList={removeItemFromList}
             />
           )
         )}
