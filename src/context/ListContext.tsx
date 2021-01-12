@@ -44,7 +44,7 @@ const ListProvider: React.FC = ({ children }) => {
 
   const removeItemFromSublist = (id: number) => {
     const newList = listItems.map((item) => {
-      if (item.sublist !== null) {
+      if (item?.sublist) {
         const newSublist = item.sublist.filter((sublist) => sublist.id !== id);
         return {
           ...item,
